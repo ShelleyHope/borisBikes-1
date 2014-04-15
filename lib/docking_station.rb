@@ -23,4 +23,20 @@ class DockingStation
 		@bikes.reject{|bike| bike.broken?}
 	end
 
+	def release(bike)
+		@bikes.delete(bike) if !@bikes.empty?
+	end
+
+	def rent
+		raise "Station is empty" if bike_count == 0
+		working_bike = available_bikes.first
+		release(working_bike)
+		working_bike
+	end
+
+	def relinquish
+			broken_bike = @bikes.select{ |bike| bike.broken? }.first
+			release(broken_bike)
+			broken_bike
+	end
 end
