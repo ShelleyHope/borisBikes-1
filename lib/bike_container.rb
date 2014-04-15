@@ -1,10 +1,5 @@
 module Bike_container
 
-	# def initialize(options={})
-	# 	@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
-	# 	@bikes =[]	
-	# end
-
 	def bike_count
 		@bikes.count
 	end
@@ -25,12 +20,6 @@ module Bike_container
 	def release(bike)
 		@bikes.delete(bike) if !@bikes.empty?
 	end
-
-	# def relinquish
-	# 	broken_bike = @bikes.select{ |bike| bike.broken? }.first
-	# 	release(broken_bike)
-	# 	broken_bike
-	# end
 
 	def broken_bikes
 		@bikes.select{|bike| bike.broken?}
