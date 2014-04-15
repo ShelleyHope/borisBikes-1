@@ -50,11 +50,11 @@ end
   it "should not rent out a working_bike if empty" do
     expect{station.rent}.to raise_error(RuntimeError)
   end
-
-  it "relinquish a broken_bike to van" do
-    van = double :van, get_bike: :broken_bike
-    station.dock(broken_bike)
-    expect(station.relinquish).to eq broken_bike
-  end
  
+  it 'drops the broken bikes into the van' do
+    van = double :van
+    station.dock(broken_bike)
+    expect(van).to receive(:dock).with(broken_bike)
+    station.drop_bikes_into(van)
+  end
 end

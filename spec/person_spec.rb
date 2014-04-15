@@ -2,7 +2,6 @@ require 'person'
 
 describe Person do
 	let(:person) {Person.new}
-
 	it 'has no bike' do
 		expect(person).not_to have_bike
 	end
@@ -19,4 +18,8 @@ describe Person do
 		person.rent_bike_from(station)
 		expect(person).to have_bike
 	end
+
+	# it "can return a bike" do
+	#   staion = dou
+	# end
 end
