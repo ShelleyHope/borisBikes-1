@@ -41,6 +41,7 @@ describe Van do
   it 'drops the broken bikes into the garage' do
   	garage = double :garage
   	van.dock(broken_bike)
+  	
      expect(garage).to receive(:dock).with(broken_bike)
   	van.drop_bikes_into(garage)
   end

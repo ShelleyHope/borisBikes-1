@@ -9,22 +9,22 @@ let(:station) {DockingStation.new(:capacity => 20)}
 def fill_station(station)
 	20.times {station.dock(Bike.new)}
 end
+  it "should be empty" do
+    expect(station.bike_count).to eq(0)
+  end
 
   it "should accept a bike" do
-    expect(station.bike_count).to eq(0)
     station.dock(working_bike)
     expect(station.bike_count).to eq(1)
   end
 
   it "should release a bike" do
     station.dock(working_bike)
-    expect(station.bike_count).to eq(1)
     station.release(working_bike)
     expect(station.bike_count).to eq(0)
   end
 
   it "should know when it is full" do
-    expect(station).not_to be_full
     fill_station(station)
     expect(station).to be_full
   end
@@ -44,12 +44,11 @@ end
     station.dock(broken_bike)
     station.dock(working_bike)
     expect(station.rent).to eq working_bike
-    expect(station.bike_count).to eq 1
   end
 
-  it "should not rent out a working_bike if empty" do
-    expect{station.rent}.to raise_error(RuntimeError)
-  end
+  # it "should not rent out a working_bike if empty" do
+  #   expect{station.rent}.to raise_error(RuntimeError)
+  # end
  
   it 'drops the broken bikes into the van' do
     van = double :van
